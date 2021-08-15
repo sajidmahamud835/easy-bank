@@ -19,7 +19,7 @@
     <!-- header end -->
     <main>
         <!-- user login start -->
-        <section class="bg-gray-100 w-3/4 mx-auto mt-8 p-9">
+        <section class="bg-gray-100 w-3/4 mx-auto mt-8 p-9 rounded">
             <h3 class="text-2xl mb-3">Please Login</h3>
             <p id="error-message" class="text-red-400 text-sm"></p>
             <div>
@@ -27,12 +27,20 @@
                     name="email" id="user-email" placeholder="Enter your email here">
                 <input class="border block border-gray-400 rounded w-3/4 mb-4 px-2 font-medium" type="password"
                     name="password" id="user-password" placeholder="Enter your password here">
-                <button class="bg-yellow-600 rounded px-4 py-2 text-white" id="login-button">Login</button>
+                <button class="bg-yellow-600 rounded px-4 py-1 text-white font-medium" id="login-button">Login</button>
+                <button class="text-white bg-green-400 px-4 py-1 rounded font-medium" onclick="demo()">Demo</button>
             </div>
         </section>
         <!-- user login end -->
     </main>
     <!-- javascript start -->
+    <script>
+        function demo() {
+            document.getElementById("user-email").value = "sajidmahamud835@gmail.com";
+            document.getElementById("user-password").value = "123456";
+            alert('Demo user credentials has been applied successfully. Now hit login!')
+        }
+    </script>
     <script src="js/login.js"></script>
     <!-- javascript end -->
 </body>
