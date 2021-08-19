@@ -1,9 +1,7 @@
+//select the total balance
 const balanceTotal = document.getElementById('balance-total');
 
-
-
 /**********input validation**********/
-
 function inputValidation(inputAmount) {
     //block empty input
     if (inputAmount == '') {
@@ -25,7 +23,7 @@ function inputValidation(inputAmount) {
     }
 }
 
-/**********get input ammount**********/
+/***********get input ammount**********/
 function inputAmount(inputId) {
     //get input value
     const inputSelector = document.getElementById(inputId);
@@ -40,68 +38,44 @@ function inputAmount(inputId) {
     return inputAmount;
 }
 
-// ////////////////////////////////////////////////////
-// ////////////input event handelr funciton////////////
-// ////////////////////////////////////////////////////
+/***********update total amount**********/
+function updateTotalAmount(totalFeildId, inputAmount) {
+    const totalFeildAmount = document.getElementById(totalFeildId);
+    totalFeildAmount.innerText = parseFloat(totalFeildAmount.innerText) + parseFloat(inputAmount);
+}
 
-// function inputEventHandeler(inputId, displayId) {
-//     //get input value
-//     const inputAmount = document.getElementById(inputId).value;
+/***********update total amount**********/
+function updateBalance(inputName, inputAmount) {
+    if (inputName == 'withdraw-input') {
+        balanceTotal.innerText = parseFloat(balanceTotal.innerText) - parseFloat(inputAmount);
+    }
+    else {
+        balanceTotal.innerText = parseFloat(balanceTotal.innerText) + parseFloat(inputAmount);
+    }
+}
 
-//     // //call input validation
-//     inputValidation(inputAmount);
-
-//     //value updater
-//     const currentValue = document.getElementById(displayId);
-//     currentValue.innerText = parseFloat(currentValue.innerText) + parseFloat(inputAmount);
-
-//     //clear the value after deposit
-//     document.getElementById(inputId).value = '';
-
-//     //Update balance
-//     const currentBalance = document.getElementById('balance-total')
-//     if (inputId == 'deposit-input') {
-//         currentBalance.innerText = parseFloat(currentBalance.innerText) + parseFloat(inputAmount);
-//     }
-//     else if (inputId == 'withdraw-input') {
-//         currentBalance.innerText = parseFloat(currentBalance.innerText) + parseFloat(inputAmount);
-//     }
-//     else {
-//         return console.log('Invalid id was passed to inputEventHandler function.')
-//     }
-// }
-// //////////////////////////////////////////////////////////
-// ////////////////deposit button event handeler/////////////
-// //////////////////////////////////////////////////////////
-
-// document.getElementById('deposit-button').addEventListener('click', inputEventHandeler('deposit-input', 'deposit-total')); //argument must be a string
-
-//handel deposit button
+/**********handel deposit button*********/
 document.getElementById('deposit-button').addEventListener('click', function () {
     //get ammount deposited
-    const depositAmmount = inputAmount('deposit-input');
-
-    const depositTotal = document.getElementById('deposit-total');
-
-    depositTotal.innerText = parseFloat(depositTotal.innerText) + parseFloat(depositAmmount);
-
-    //Update blance
-    balanceTotal.innerText = parseFloat(balanceTotal.innerText) + parseFloat(depositAmmount);
+    const depositAmount = inputAmount('deposit-input');
+    //update total amount
+    updateTotalAmount('deposit-total', depositAmount)
+    //update blance
+    updateBalance('deposit-input', depositAmount);
 })
 
+/**********handel withdraw button*********/
 document.getElementById('withdraw-button').addEventListener('click', function () {
     //get ammount withdrawen
-    const withdrawAmmount = inputAmount('withdraw-input');
-
+    const withdrawAmount = inputAmount('withdraw-input');
     //fuard control
-    if (withdrawAmmount > parseFloat(balanceTotal.innerText)) {
+    if (withdrawAmount > parseFloat(balanceTotal.innerText)) {
         return alert("You don't have enough balance to withdraw.")
     }
-    const withdrawTotal = document.getElementById('withdraw-total');
-    withdrawTotal.innerText = parseFloat(withdrawTotal.innerText) + parseFloat(withdrawAmmount);
-
-    //Update blance
-    balanceTotal.innerText = parseFloat(balanceTotal.innerText) - parseFloat(withdrawAmmount);
+    //update total amount
+    updateTotalAmount('withdraw-total', withdrawAmount)
+    //update blance
+    updateBalance('withdraw-input', withdrawAmount);
 })
 
 
@@ -151,7 +125,7 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
 //         return alert("You don't have enough balance to withdraw.")
 //     }
 //     const withdrawTotal = document.getElementById('withdraw-total');
-//     withdrawTotal.innerText = parseFloat(withdrawTotal.innerText) + parseFloat(withdrawAmmount);
+//     withdrawTotal.innerText = parseFloat(withdrawTotal.innerTex asst) + parseFloat(withdrawAmmount);
 
 
 
