@@ -14,6 +14,7 @@ function auth(userEmail, userPassword) {
     }
 }
 
+/*******handel submit button*******/
 document.getElementById('login-button').addEventListener('click', function () {
     // get user email
     const userEmail = getUserInput('user-email');
